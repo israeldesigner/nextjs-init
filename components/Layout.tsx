@@ -5,7 +5,7 @@ import { MainContent } from './MainContent'
 
 const Layout: React.FunctionComponent = (props) =>{
     return (
-        <div>
+        <div className="wrapper">
             <Header />
             <MainContent>
             </MainContent>
