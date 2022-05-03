@@ -1,0 +1,16 @@
+@import "styles/base/bs-variables";
+@import "styles/base/mixins";
+
+.root {
+
+    background-color: $white;
+    min-height: calc(100vh - 130px);
+
+    &>div{
+        padding-top: 24px;
+      
+        @include respond-to($_992) {
+          max-width: 900px;
+        }
+    }
+}
