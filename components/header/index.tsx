@@ -1,8 +1,11 @@
 /* eslint-disable @next/next/no-html-link-for-pages */
 import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import Acessibility from '../acessibility';
+import classes from './Header.module.scss'
 import Image from 'next/image';
 import LogoBranca from '../../public/logo-branca.png'
+
+console.log(classes);
 
 const Header: React.FunctionComponent = (props) => {
     return(
