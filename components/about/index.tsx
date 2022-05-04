@@ -86,7 +86,7 @@ const About: React.FunctionComponent = () =>{
                                     </div>
                                 </div>
 
-                                <div className="my-5 d-block d-md-none">
+                                <div className="my-5">
                                     <div className="steps" id="stepWizard">
                                         <div className="step position-relative">
                                             <div className="step-heading position-static" id="step1">
