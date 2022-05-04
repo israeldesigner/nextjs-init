@@ -14,12 +14,12 @@ const About: React.FunctionComponent = () =>{
                 <Row>
                     <Col>
                         <div className="jumbotron bg-white">
-                                <p className="lead">
+                                <article className="lead">
                                     O Wi-For tem como princípios a promoção da cidadania e a inclusão digital, possibilitando a democratização do acesso à Internet e
                                     facilitando ao cidadão o acesso à informação, à cultura, aos serviços digitais e à educação.
                                     Hoje são <b className="text-orange">102 pontos</b> disponíveis em diversas localidades de Fortaleza.
                                     <hr />
-                                </p>
+                                </article>
                                 <h3 className="mb-0 text-center font-weight-bold mt-5">Pilares do Wi-For</h3>
 
                                 <div className="holderCircle p-4 d-none d-md-block">
