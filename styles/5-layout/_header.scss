@@ -89,16 +89,13 @@ app-acessibilidade a {
 
         .h-nav__menu--list{
             display: flex;
-            .nav-item{
-                .nav-link{
-                    color: $white;
-                    font-weight: 700;
-                    margin: .25rem;
-                    &:hover{
-                        opacity: .5;
-                    }
+            .nav-link{
+                color: $white;
+                font-weight: 700;
+                margin: .25rem;
+                &:hover{
+                    opacity: .5;
                 }
-
             }
 
             .navItem-login{
