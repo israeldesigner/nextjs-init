@@ -12,7 +12,7 @@ const acessibility: React.FunctionComponent = (props) =>{
                             <a className="scroll mr-1" href="#footer" data-toggle="tooltip" data-placement="top" title="atalho alt + 3" data-original-title="alt + 3" accessKey='3'> Rodapé </a>
                             <a href="./acessibilidade" className="mr-1" data-toggle="tooltip"><i className="fa d-inline fa-wheelchair text-gray-700"></i></a> 
                             <a href="#altocontraste" id="altocontraste" className="colorContrast mr-1 text-gray-700">
-                            <i className="fa d-inline fa-adjust text-blue text-gray-700"></i></a>
+                            <i className="icon-heart icons text-blue text-gray-700"></i></a>
                             <a href="#" className="sizeMenos mr-1 text-gray-700" data-toggle="tooltip">A-</a>
                             <a href="#" className="sizePadrao mr-1 text-gray-700" data-toggle="tooltip">A</a>
                             <a href="#" className="sizeMais mr-1 text-gray-700" data-toggle="tooltip">A+</a>

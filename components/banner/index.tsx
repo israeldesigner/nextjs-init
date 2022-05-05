@@ -2,7 +2,7 @@
 import { Carousel } from 'react-bootstrap'
 import Image from 'next/image';
 import BannerMain from '../../public/bgMain.jpg';
-import BannerComplete from '../../public/bgOriginal.jpg';
+import BannerComplete from '../../public/img/bgOriginal.jpg';
 import classes from './Banner.module.scss';
 
 const Banner: React.FunctionComponent = (props) =>{
@@ -25,6 +25,7 @@ const Banner: React.FunctionComponent = (props) =>{
                     <Image 
                         src={BannerComplete}
                         layout="responsive"
+                        quality={90}
                         alt="banner 2 completo"
                     />                  
                     <Carousel.Caption>

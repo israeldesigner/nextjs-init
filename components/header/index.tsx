@@ -3,7 +3,7 @@ import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import Acessibility from '../acessibility';
 import classes from './Header.module.scss'
 import Image from 'next/image';
-import LogoBranca from '../../public/logo-branca.png'
+import LogoBranca from '../../public/img/logo-branca.png'
 
 console.log(classes);
 
@@ -12,7 +12,7 @@ const Header: React.FunctionComponent = (props) => {
       <header id="header" className="">
         <Acessibility />
         <Navbar 
-            bg="success" 
+            bg="orange" 
             expand="lg"
             sticky="top" 
             collapseOnSelect
