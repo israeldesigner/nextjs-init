@@ -1,4 +1,65 @@
+import React from 'react';
+import {useEffect} from "react";
+
 const HolderCircle: React.FunctionComponent = () =>{
+    
+    // const [_document, set_document] = React.useState(null);
+    // React.useEffect(() => {
+    //     return set_document(document);
+    // }, [])
+
+    if (typeof(window) === 'object') {
+        // Check if document is finally loaded
+        document.addEventListener("DOMContentLoaded", function () {
+            alert('Finished loading document');
+        });
+    }
+
+    useEffect(() => {
+        let i: number = 2;
+        let radius: number = 200;
+        const fields = document.querySelectorAll('.itemDot');
+        const container = document.querySelectorAll('.dotCircle');
+        let width = container[0].clientWidth;
+        let height = container[0].clientHeight;
+        let angle = 0;
+        let  step = (2 * Math.PI) / fields.length;
+        radius = width / 2.5;
+
+        fields.forEach((e,i)=>{
+            let x = Math.round(width / 2 + radius * Math.cos(angle) - e.clientWidth / 2);
+            let y = Math.round(height / 2 + radius * Math.sin(angle) - e.clientHeight / 2);
+
+            e.style.left = x + 'px';
+            e.style.top = y + 'px';
+            angle += step;
+        })        
+
+        setInterval(function () {
+            let itemDot = document.querySelectorAll('.itemDot');  
+            console.log(itemDot);
+            let dataTab = document.querySelectorAll('.itemDot.active')[0].getAttribute('data-tab');
+            // console.log(dataTab);
+            if (dataTab > 6 || i > 6) {
+                dataTab = 1;
+                i = 1;
+            }
+            // $(".itemDot").removeClass("active");
+            // $('[data-tab="' + i + '"]').addClass("active");
+            // $(".CirItem").removeClass("active");
+            // $(".CirItem" + i).addClass("active");
+            // i++;
+
+            // $(".dotCircle").css({
+            //     transform: "rotate(" + (360 - (i - 2) * 36) + "deg)",
+            //     transition: "2s",
+            // });
+            // $(".itemDot").css({
+            //     transform: "rotate(" + (i - 2) * 36 + "deg)",
+            //     transition: "1s",
+            // });
+        }, 5000);
+    }, []);
 
     return(
         <div className="holderCircle p-4 d-none d-md-block">
