@@ -1,12 +1,7 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import {useEffect} from "react";
 
 const HolderCircle: React.FunctionComponent = () =>{
-    
-    // const [_document, set_document] = React.useState(null);
-    // React.useEffect(() => {
-    //     return set_document(document);
-    // }, [])
 
     if (typeof(window) === 'object') {
         // Check if document is finally loaded
@@ -15,117 +10,150 @@ const HolderCircle: React.FunctionComponent = () =>{
         });
     }
 
+    const elementRef = useRef(null);
+
+    const _title: string[] = ['Expansão da rede', 'Disponibilidade', 'Inclusão Digital', 'Conectividade', 'Cidadania Digital', 'Segurança'];
+    const _circDescription: string[] = [
+        "Wi-Fi mais perto de você",
+        "Internet 24 horas por dia 7 dias por semana",
+        "Democratização do acesso",
+        "Internet para quem mais precisa",
+        "Direitos e deveres da cultura de acesso à internet.",
+        "Wi-For, Respeita a privacidade dos seus dados e obdece no que diz respeito a LGPD"
+    ];
+    const _iconsCircle: string[] = ["icon-feed", "icon-location-pin", "icon-people", "icon-globe", "icon-organization", "icon-shield"];
     useEffect(() => {
+
+        const divElement = elementRef.current;
+        console.log(divElement); 
+
+        //variaveis dos seletores
+        let fields = document.querySelectorAll('.itemDot');
+        let container = document.querySelectorAll('.dotCircle');
+        let itemDot:any = document.querySelectorAll('.itemDot');  
+        let cirItem: any = document.querySelectorAll('.CirItem');
+        let dotCircle:any = document.querySelector(".dotCircle");
+
+
+        //variavies para circulo
         let i: number = 2;
         let radius: number = 200;
-        const fields = document.querySelectorAll('.itemDot');
-        const container = document.querySelectorAll('.dotCircle');
-        let width = container[0].clientWidth;
-        let height = container[0].clientHeight;
-        let angle = 0;
-        let  step = (2 * Math.PI) / fields.length;
+        let width: number = container[0].clientWidth;
+        let height: number = container[0].clientHeight;
+        let angle:number = 0;
+        let step:number = (2 * Math.PI) / fields.length;
         radius = width / 2.5;
 
-        fields.forEach((e,i)=>{
-            let x = Math.round(width / 2 + radius * Math.cos(angle) - e.clientWidth / 2);
-            let y = Math.round(height / 2 + radius * Math.sin(angle) - e.clientHeight / 2);
+        //angulos dos campos
+        fields.forEach((e:any,i)=>{
+            let x:number = Math.round(width / 2 + radius * Math.cos(angle) - e.clientWidth / 2);
+            let y:number = Math.round(height / 2 + radius * Math.sin(angle) - e.clientHeight / 2);
 
             e.style.left = x + 'px';
             e.style.top = y + 'px';
             angle += step;
-        })        
+        });
 
         setInterval(function () {
-            let itemDot = document.querySelectorAll('.itemDot');  
-            console.log(itemDot);
-            let dataTab = document.querySelectorAll('.itemDot.active')[0].getAttribute('data-tab');
-            // console.log(dataTab);
+
+            let dataTab: any = document.querySelectorAll('.itemDot.active')[0].getAttribute('data-tab');
             if (dataTab > 6 || i > 6) {
                 dataTab = 1;
                 i = 1;
             }
-            // $(".itemDot").removeClass("active");
-            // $('[data-tab="' + i + '"]').addClass("active");
-            // $(".CirItem").removeClass("active");
-            // $(".CirItem" + i).addClass("active");
-            // i++;
 
-            // $(".dotCircle").css({
-            //     transform: "rotate(" + (360 - (i - 2) * 36) + "deg)",
-            //     transition: "2s",
-            // });
-            // $(".itemDot").css({
-            //     transform: "rotate(" + (i - 2) * 36 + "deg)",
-            //     transition: "1s",
-            // });
+            for (let i = 0; i < itemDot.length; i++) {
+                const element = itemDot[i];
+                element.classList.remove('active');
+            }
+
+            let usingDt: any = document.querySelector('[data-tab="' + i + '"]');
+            usingDt.classList.add("active");
+
+            let cirItemNum: any = document.querySelectorAll(`.CirItem${i}`);
+
+            for (let i = 0; i < cirItem.length; i++) {
+                const element = cirItem[i];
+                element.classList.remove('active');
+            }
+
+            for (let i = 0; i < cirItemNum.length; i++) {
+                const element = cirItemNum[i];
+                element.classList.add('active');
+            }
+            i++;
+
+            dotCircle.style.transform = "rotate(" + (360 - (i - 2) * 36) + "deg)";
+            dotCircle.style.transition = "2s";
+
+            itemDot.forEach((element:any) => {
+                element.style.transform = "rotate(" + (i - 2) * 36 + "deg)";
+                element.style.transition = "1s";
+            });
+
         }, 5000);
+
     }, []);
+    
+    const names = ['Ada Lovelace', 'Grace Hopper', 'Margaret Hamilton'];
+    const [count, setCount] = useState(0);
+    const [name, setName] = useState('Flavio');
+
+    const [active, setActive ] = useState(false);
+    useEffect(() =>{
+        console.log(active, this);
+    },[active,setActive])
+
+    const clickTestando = (e:any) =>{
+        console.log(e);
+        console.log(this);
+    }
+
+    // ref={elementRef}
+    // onClick={() => setName(name === 'Flavio' ? 'Roger' : 'Flavio')} 
+    // onClick={() => setCount(count + 1)}
+    // onClick={clickTestando} 
 
     return(
-        <div className="holderCircle p-4 d-none d-md-block">
-            <div className="round"></div>
-            <div className="dotCircle">
-            <span className="itemDot active itemDot1" data-tab="1">
-                <i className="icon-feed icons"></i>
-            <span className="forActive"></span>
-            </span>
-            <span className="itemDot itemDot2" data-tab="2">
-                <i className="icon-location-pin icons"></i>
-            <span className="forActive"></span>
-            </span>
-            <span className="itemDot itemDot3" data-tab="3">
-                <i className="icon-people icons"></i>
-            <span className="forActive"></span>
-            </span>
-            <span className="itemDot itemDot4" data-tab="4">
-                <i className="icon-globe icons"></i>
-            <span className="forActive"></span>
-            </span>
-            <span className="itemDot itemDot5" data-tab="5">
-                <i className="icon-organization icons"></i>
-            <span className="forActive"></span>
-            </span>
-            <span className="itemDot itemDot6" data-tab="6">
-                <i className="icon-shield icons"></i>
-            <span className="forActive"></span>
-            </span>
+        <>
+            <div className="holderCircle p-4 d-none d-md-block">
+                <div className="round"></div>
+                <div className="dotCircle">
+                    {
+                        _iconsCircle.map((icon,i) => (
+                            <>                            
+                            <span className={`itemDot active itemDot${i + 1}`}  ref={elementRef} data-tab={i +1}>
+                                <i className={icon} key={icon}></i>
+                                <span className="forActive"></span>
+                            </span>
+                            </>
+                        ))
+                    }
+                </div>
+
+                <div className="contentCircle">
+
+                    {
+                        _title.map((title,i) => (
+                            <>                            
+                                <div className={`CirItem title-box active CirItem${i + 1}`}>
+                                    <h2 className="title">
+                                        <span key={title}>{title}</span>
+                                    </h2>
+                                    <p>
+                                        Wi-Fi mais perto de você
+                                    </p>
+                                    <i className="icon-feed icons"></i>
+                                </div>
+                            </>
+                        ))
+                    }
+                </div> 
+
             </div>
-            <div className="contentCircle">
-            <div className="CirItem title-box active CirItem1">
-                <h2 className="title"><span>Expansão da rede</span></h2>
-                <p>
-                    Wi-Fi mais perto de você
-                </p>
-                <i className="icon-feed icons"></i>
-            </div>
-            <div className="CirItem title-box CirItem2">
-                <h2 className="title"><span>Disponibilidade </span></h2>
-                <p>Internet 24 horas por dia 7 dias por semana</p>
-                    <i className="icon-location-pin icons"></i>
-            </div>
-            <div className="CirItem title-box CirItem3">
-                <h2 className="title"><span>Inclusão Digital</span></h2>
-                <p>Democratização do acesso </p>
-                <i className="icon-people icons"></i>
-            </div>
-            <div className="CirItem title-box CirItem4">
-                <h2 className="title"><span>Conectividade</span></h2>
-                <p>Internet para quem mais precisa</p>
-                <i className="icon-organization icons"></i>
-            </div>
-            <div className="CirItem title-box CirItem5">
-                <h2 className="title"><span>Cidadania Digital </span></h2>
-                <p>Direitos e deveres da cultura de acesso à internet.</p>
-                <i className="icon-share icons"></i>
-            </div>
-            <div className="CirItem title-box CirItem6">
-                <h2 className="title"><span>Segurança</span></h2>
-                <p>Wi-For, Respeita a privacidade dos seus dados e obdece no que diz respeito a LGPD.</p>
-                <i className="icon-shield icons"></i>
-            </div>
-            </div>
-        </div>
+        </>
     )
 }
 
 export default HolderCircle;
+
