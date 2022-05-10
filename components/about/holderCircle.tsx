@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useLayoutEffect } from 'react';
 import {useEffect} from "react";
 
 const HolderCircle: React.FunctionComponent = () =>{
@@ -22,10 +22,11 @@ const HolderCircle: React.FunctionComponent = () =>{
         "Wi-For, Respeita a privacidade dos seus dados e obdece no que diz respeito a LGPD"
     ];
     const _iconsCircle: string[] = ["icon-feed", "icon-location-pin", "icon-people", "icon-globe", "icon-organization", "icon-shield"];
+    const [value, setValue] = useState(() => () => console.log("default ooops"));
+
     useEffect(() => {
 
         const divElement = elementRef.current;
-        console.log(divElement); 
 
         //variaveis dos seletores
         let fields = document.querySelectorAll('.itemDot');
@@ -53,6 +54,34 @@ const HolderCircle: React.FunctionComponent = () =>{
             e.style.top = y + 'px';
             angle += step;
         });
+
+
+        
+        const valeTestando = () => {
+            let fields = document.querySelectorAll('.itemDot');
+            console.log(fields);
+            setValue(value);
+        }
+        //   $(".itemDot").click(function () {
+        //     var dataTab = $(this).data("tab");
+        //     $(".itemDot").removeClass("active");
+        //     $(this).addClass("active");
+        //     $(".CirItem").removeClass("active");
+        //     $(".CirItem" + dataTab).addClass("active");
+        //     i = dataTab;
+
+        //     $(".dotCircle").css({
+        //         transform: "rotate(" + (360 - (i - 1) * 36) + "deg)",
+        //         transition: "2s",
+        //     });
+        //     $(".itemDot").css({
+        //         transform: "rotate(" + (i - 1) * 36 + "deg)",
+        //         transition: "1s",
+        //     });
+        // });
+        setValue(valeTestando);
+
+
 
         setInterval(function () {
 
@@ -93,26 +122,21 @@ const HolderCircle: React.FunctionComponent = () =>{
 
         }, 5000);
 
-    }, []);
+    }, [value]);
     
     const names = ['Ada Lovelace', 'Grace Hopper', 'Margaret Hamilton'];
     const [count, setCount] = useState(0);
     const [name, setName] = useState('Flavio');
 
-    const [active, setActive ] = useState(false);
-    useEffect(() =>{
-        console.log(active, this);
-    },[active,setActive])
 
-    const clickTestando = (e:any) =>{
-        console.log(e);
-        console.log(this);
-    }
+    // useLayoutEffect(() => {
 
-    // ref={elementRef}
-    // onClick={() => setName(name === 'Flavio' ? 'Roger' : 'Flavio')} 
-    // onClick={() => setCount(count + 1)}
-    // onClick={clickTestando} 
+
+    //     },[value]
+    // );
+
+
+    
 
     return(
         <>
@@ -122,7 +146,7 @@ const HolderCircle: React.FunctionComponent = () =>{
                     {
                         _iconsCircle.map((icon,i) => (
                             <>                            
-                            <span className={`itemDot active itemDot${i + 1}`}  ref={elementRef} data-tab={i +1}>
+                            <span className={`itemDot active itemDot${i + 1}`}   onClick={() => setValue(() => value)}  ref={elementRef} data-tab={i +1}>
                                 <i className={icon} key={icon}></i>
                                 <span className="forActive"></span>
                             </span>
