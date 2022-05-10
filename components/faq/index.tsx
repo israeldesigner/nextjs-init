@@ -7,7 +7,7 @@ const FaqSection: React.FunctionComponent = ( props ) =>{
                 <Row>
                     <Col>
                         <h2 className="text-center s-content__title--main mb-4 text-black">
-                                    <b>Dúvidas Frequentes</b>
+                            <b>Dúvidas Frequentes</b>
                         </h2>
                     </Col>
                 </Row>
@@ -15,35 +15,49 @@ const FaqSection: React.FunctionComponent = ( props ) =>{
             <Container>
                 <Row>
                 <Col>
-                <div id="faq">
-                    <Accordion defaultActiveKey={['0']} alwaysOpen>
-                        <Accordion.Item eventKey="0">
-                            <Accordion.Header>Accordion Item #1</Accordion.Header>
-                            <Accordion.Body>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                            commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                            velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                            cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-                            est laborum.
-                            </Accordion.Body>
-                        </Accordion.Item>
-                        <Accordion.Item eventKey="1">
-                            <Accordion.Header>Accordion Item #2</Accordion.Header>
-                            <Accordion.Body>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                            commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                            velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                            cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-                            est laborum.
-                            </Accordion.Body>
-                        </Accordion.Item>
-                    </Accordion>
-                </div>
-                    </Col>
+                    <div className="accordion" id="faq">
+                        <Accordion>
+                            <Accordion.Item eventKey="0" className='card'>
+                                <Accordion.Header className='card-header'>Preciso pagar pra usar?</Accordion.Header>
+                                <Accordion.Body className='card-body'>
+                                    Não. O serviço é gratuito.
+                                </Accordion.Body>
+                            </Accordion.Item>
+                            <Accordion.Item eventKey="1" className='card'>
+                                <Accordion.Header className='card-header'>Preciso realizar algum cadastro?</Accordion.Header>
+                                <Accordion.Body className='card-body'>
+                                    Sim. Na primeira vez que você for utilizar o serviço, é necessário fornecer alguns dados básicos.
+                                </Accordion.Body>
+                            </Accordion.Item>
+                            <Accordion.Item eventKey="2" className='card'>
+                                <Accordion.Header className='card-header'>Onde estão os pontos do programa Wi-For?</Accordion.Header>
+                                <Accordion.Body className='card-body'>
+                                    Pode encontrar no mapa a seguir <a href="#" className="linkAnchorFor">Mapa</a>.
+                                </Accordion.Body>
+                            </Accordion.Item>
+                            <Accordion.Item eventKey="3" className='card'>
+                                <Accordion.Header className='card-header'>Quem pode acessar o Wi-For? </Accordion.Header>
+                                <Accordion.Body className='card-body'>
+                                    Todas as pessoas que circulam nos locais onde há um ponto instalado do Programa <b>Wi-For</b>
+                                </Accordion.Body>
+                            </Accordion.Item>
+                            <Accordion.Item eventKey="4" className='card'>
+                                <Accordion.Header className='card-header'>O sinal está fora do ar. O que fazer neste caso?</Accordion.Header>
+                                <Accordion.Body className='card-body'>
+                                    O usuário deverá ligar para a Central <a href="tel:156">156</a> ou fale conosco e informar o endereço do wi-fi para correção.
+                                </Accordion.Body>
+                            </Accordion.Item>
+                            <Accordion.Item eventKey="5" className='card'>
+                                <Accordion.Header className='card-header'>A Prefeitura fará coleta de algum dado pessoal durante a navegação?</Accordion.Header>
+                                <Accordion.Body className='card-body'>
+                                    Não. As regras do programa proíbem a coleta de dados pessoais. Só coletamos dados referentes à qualidade do serviço,
+                                    como velocidade de conexão, número de usuários simultâneos, consumo total de banda e disponibilidade do serviço nas localidades,
+                                    por exemplo, que não violam a privacidade dos cidadãos e permitem à Prefeitura monitorar e melhorar a qualidade do serviço oferecido.
+                                </Accordion.Body>
+                            </Accordion.Item>
+                        </Accordion>
+                    </div>
+                </Col>
                 </Row>
             </Container>
         </section>

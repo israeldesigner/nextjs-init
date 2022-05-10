@@ -124,7 +124,6 @@ const HolderCircle: React.FunctionComponent = () =>{
 
     }, [value]);
     
-    const names = ['Ada Lovelace', 'Grace Hopper', 'Margaret Hamilton'];
     const [count, setCount] = useState(0);
     const [name, setName] = useState('Flavio');
 

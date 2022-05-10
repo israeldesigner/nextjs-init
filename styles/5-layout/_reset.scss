@@ -315,6 +315,11 @@ a {
 	}
 }
 
+#map{
+  height:100vh;
+  width:400vw;
+}
+
 // SVG fills
 
 @mixin fill-variant($parent, $color) {

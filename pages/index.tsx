@@ -15,7 +15,7 @@ const Home: NextPage = () => {
         <meta property="og:type" content="video.movie" />
         <meta property="og:url" content="" />
         <meta property="og:image" content="img/icon-wifor.png" />
-        <link rel="icon" href="img/favicon//favicon.ico" />
+        <link rel="icon" href="img/favicon/favicon.ico" />
       </Head>
       <Layout />
     </React.Fragment>

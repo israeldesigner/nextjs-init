@@ -5,8 +5,6 @@ import classes from './Header.module.scss'
 import Image from 'next/image';
 import LogoBranca from '../../public/img/logo-branca.png'
 
-console.log(classes);
-
 const Header: React.FunctionComponent = (props) => {
     return(
       <header id="header" className="">

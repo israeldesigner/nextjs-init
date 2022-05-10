@@ -1,7 +1,6 @@
 import { Container } from 'react-bootstrap'
 import classes from './Footer.module.scss'
 
-console.log(classes);
 
 const Footer:React.FunctionComponent = (props) =>{
     return(
