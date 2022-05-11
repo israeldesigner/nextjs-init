@@ -1,28 +1,29 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react'
+import useCollapse from 'react-collapsed'
 import Accordion from 'react-bootstrap/Accordion'
 
 
 
 const MobileHolder: React.FunctionComponent = (props) =>{
+    
+    const { getCollapseProps, getToggleProps } = useCollapse()
 
     return (
         <div className="my-5">
             <div className="steps" id="stepWizard">
-
                 <div className="step position-relative">
                     <div className="step-heading position-static" id="step1">
-                        <a className="" role="button" data-toggle="collapse" href="#collapse1" aria-expanded="true" aria-controls="collapse1">
+                        <button className="" {...getToggleProps()} type="button">
                             <div className="num d-inline-flex text-white align-items-center justify-content-center position-relative rounded-circle bg-orange">
                                 <i className="icon-people icons"></i>
                             </div>
-                            <div className="pl-4 d-inline-flex title">Inclusão Digital</div>
-                        </a>
+                            <div className="pl-4 d-inline-flex title">Inclusão Digital </div>
+                        </button>
                     </div>
 
                     <div className="line position-absolute"></div>
 
-                    <div id="collapse1" className="pl-5 collapse show" aria-labelledby="step1" data-parent="#stepWizard">
+                    <div className="pl-5" aria-labelledby="step1" {...getCollapseProps()}>
                         <div className="step-body">
                             Democratização do acesso
                         </div>
@@ -31,17 +32,17 @@ const MobileHolder: React.FunctionComponent = (props) =>{
 
                 <div className="step position-relative">
                     <div className="step-heading position-static" id="step2">
-                        <a className="" role="button" data-toggle="collapse" href="#collapse2" aria-expanded="false" aria-controls="collapse2">
+                        <button className="" {...getToggleProps()} >
                             <div className="num d-inline-flex text-white align-items-center justify-content-center position-relative rounded-circle bg-orange">
                                 <i className="icon-feed icons"></i>
                             </div>
                             <div className="pl-4 d-inline-flex title">Expansão da rede</div>
-                        </a>
+                        </button>
                     </div>
 
                     <div className="line position-absolute"></div>
 
-                    <div id="collapse2" className="pl-5 collapse" aria-labelledby="step2" data-parent="#stepWizard">
+                    <div {...getCollapseProps()} className="pl-5 collapse">
                         <div className="step-body">
                             Wi-Fi mais perto de você
                         </div>
