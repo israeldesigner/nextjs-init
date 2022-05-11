@@ -5,6 +5,7 @@ import FaqSection from '../faq';
 import Step from '../step';
 import Pontos from '../pontos';
 import Mapa from '../mapa';
+import Contato from '../contato';
 
 export const MainContent: React.FunctionComponent = (props) => {
     return(
@@ -15,6 +16,7 @@ export const MainContent: React.FunctionComponent = (props) => {
             <Mapa />
             <Pontos />
             <FaqSection />
+            <Contato />
         </main>
     )
 }

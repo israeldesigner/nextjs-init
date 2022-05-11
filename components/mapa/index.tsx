@@ -2,7 +2,7 @@ import dynamic from "next/dynamic";
 import { useMemo } from "react";
 
 const Mapa: React.FunctionComponent = () =>{
-    const Map = useMemo(
+    const Map:any = useMemo(
         () =>
           dynamic(() => import("./mapa"), {
             loading: () => <p>A map is loading</p>,

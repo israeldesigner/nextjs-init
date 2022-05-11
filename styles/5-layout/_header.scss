@@ -1,40 +1,58 @@
-app-acessibilidade a {
-    color: #d4d4d4 !important; }
-    .app-acessibilidade a:hover {
-      color: #faaf40; }
-  .app-acessibilidade .app-acessibilidadeItens {
-    text-align: right; }
-    .app-acessibilidade .app-acessibilidadeItens .brasil-vlibras {
-      display: none; }
-    .app-acessibilidade .app-acessibilidadeItens ul {
-      display: inline-flex; }
-      .app-acessibilidade .app-acessibilidadeItens ul li {
-        margin-right: 10px; }
-      .app-acessibilidade .app-acessibilidadeItens ul li:last-child {
-        margin-right: 0px !important;
-      }
+.s-acessibility{
+    font-size: .675rem;
+    font-weight: 500;
+    .app-acessibilidade{
+        .app-acessibilidadeMenu{
 
-#header{
-    background: $orange;
-    width: 100%;
-    margin: 0 auto;
-    z-index: 1000;
-    font-size: 16px;
+            a{
+                font-size: small;
+                color: $black;
+                &:hover{
+                    opacity: .75;
+                }
+            }
 
-    .s-acessibility{
-        font-size: .675rem;
-        font-weight: 500;
-        a{
-            color: $black;
-        }
-        ul{
-            list-style: none;
-            li{
-                a{
+            ul{
+                list-style: none;
+                li{
+                    a{
+        
+                        &:hover{
+                            opacity: .75;
+                            text-decoration: none;
+                        }
+                        &:visited{
+                            color: $purple;
+                        }
+                    }
+                }
+            }
 
+            .langButton{
+                button{
+                    border: none;
+                    background-color: none;
+                    background: none;
+                    img{
+                        @include border-radius(50%);
+                        width: 20px;
+                        height: 20px;
+                    }
                     &:hover{
                         opacity: .75;
-                        text-decoration: none;
+                    }
+                }
+            }
+        }
+        .app-acessibilidadeItens {
+            text-align: right;
+            ul{
+                display: inline-flex;
+                list-style: none;
+                li{
+                    margin-right: 10px;
+                    &:last-child{
+                        margin-right: 0px !important;
                     }
                     &:visited{
                         color: $purple;
@@ -42,24 +60,16 @@ app-acessibilidade a {
                 }
             }
         }
-
-        .langButton{
-            button{
-                border: none;
-                background-color: none;
-                background: none;
-                img{
-                    @include border-radius(50%);
-                    width: 20px;
-                    height: 20px;
-                }
-                &:hover{
-                    opacity: .75;
-                }
-            }
-        }
     }
+}
 
+
+#contHeader{
+    font-size: 16px;
+    .wiFor{
+        z-index: -10;
+        visibility: hidden;
+    }
     .h-nav{
         .h-nav__links--order{
             width: 100%;

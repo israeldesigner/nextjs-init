@@ -7,8 +7,8 @@ const Layout: React.FunctionComponent = (props) =>{
     return (
         <div className="wrapper">
             <Header />
-            <MainContent>
-            </MainContent>
+                <MainContent>
+                </MainContent>
             <Footer />
         </div>
     )

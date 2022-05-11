@@ -146,7 +146,7 @@ const HolderCircle: React.FunctionComponent = () =>{
                         _iconsCircle.map((icon,i) => (
                             <>                            
                             <span className={`itemDot active itemDot${i + 1}`}   onClick={() => setValue(() => value)}  ref={elementRef} data-tab={i +1}>
-                                <i className={icon} key={icon}></i>
+                                <i className={icon} key={i}></i>
                                 <span className="forActive"></span>
                             </span>
                             </>
@@ -161,7 +161,7 @@ const HolderCircle: React.FunctionComponent = () =>{
                             <>                            
                                 <div className={`CirItem title-box active CirItem${i + 1}`}>
                                     <h2 className="title">
-                                        <span key={title}>{title}</span>
+                                        <span key={i}>{title}</span>
                                     </h2>
                                     <p>
                                         Wi-Fi mais perto de você
