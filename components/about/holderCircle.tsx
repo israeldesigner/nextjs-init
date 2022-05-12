@@ -59,7 +59,6 @@ const HolderCircle: React.FunctionComponent = () =>{
         
         const valeTestando = () => {
             let fields = document.querySelectorAll('.itemDot');
-            console.log(fields);
             setValue(value);
         }
         //   $(".itemDot").click(function () {

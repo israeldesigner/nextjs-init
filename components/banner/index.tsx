@@ -6,7 +6,6 @@ import BannerComplete from '../../public/img/bgOriginal.jpg';
 import classes from './Banner.module.scss';
 
 const Banner: React.FunctionComponent = (props) =>{
-    console.log(props);
     return(
         <section>
             <Carousel indicators={false} controls={false}>
