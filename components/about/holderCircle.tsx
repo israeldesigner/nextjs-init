@@ -124,17 +124,8 @@ const HolderCircle: React.FunctionComponent = () =>{
     }, [value]);
     
     const [count, setCount] = useState(0);
-    const [name, setName] = useState('Flavio');
+    const [name, setName] = useState('teste');
 
-
-    // useLayoutEffect(() => {
-
-
-    //     },[value]
-    // );
-
-
-    
 
     return(
         <>

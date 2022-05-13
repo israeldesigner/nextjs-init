@@ -1,7 +1,24 @@
+import React, { useEffect, useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 
 
-const acessibility: React.FunctionComponent = (props) =>{
+const Acessibility: React.FunctionComponent = () =>{
+    const [ darkMode, setDarkMode ] = useState(false);
+    
+    useEffect(() => {
+        const body = document.body
+        const toggle:any = document.querySelector('.toggle-inner')
+        
+        // If dark mode is enabled - adds classes to update dark-mode styling.
+        // Else, removes and styling is as normal.
+        if( darkMode === true ) {
+          body.classList.add('dark-mode')
+          toggle.classList.add('toggle-active')
+        } else {
+          body.classList.remove('dark-mode')
+          toggle.classList.remove('toggle-active')
+        }
+      }, [darkMode])
     return(
         <section className="s-acessibility d-none d-lg-block bg-light">
             <Container className='app-acessibilidade' fluid>
@@ -11,8 +28,14 @@ const acessibility: React.FunctionComponent = (props) =>{
                         <a className="scroll mr-1" href="#contHeader" accessKey='2'> Menu |</a>
                         <a className="scroll mr-1" href="#footer" accessKey='3'> Rodapé </a>
                         
-                        <a href="#altocontraste" id="altocontraste" className="colorContrast ml-2 mr-1 text-gray-700">
-                        <i className="icon-heart icons text-blue text-gray-700"></i></a>
+                        <a 
+                            href="#" 
+                            id="toggle"
+                            onClick={() => darkMode === false ? setDarkMode(true) : setDarkMode(false)} 
+                            className="colorContrast ml-2 mr-1 text-gray-700"
+                        >
+                            <i className="icon-heart icons text-blue text-gray-700 toggle-inner"></i>
+                        </a>
                         <a href="#" className="sizeMenos mr-1 text-gray-700">A-</a>
                         <a href="#" className="sizePadrao mr-1 text-gray-700">A</a>
                         <a href="#" className="sizeMais mr-1 text-gray-700">A+</a>
@@ -50,4 +73,4 @@ const acessibility: React.FunctionComponent = (props) =>{
     )
 }
 
-export default acessibility;
+export default Acessibility;

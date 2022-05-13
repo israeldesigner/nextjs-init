@@ -2,3 +2,19 @@
   height:450px;
   width:100%;
 }
+
+.dark-mode {
+  color: white;
+    
+  main {
+    background-color: #1a202c;
+  }
+  
+  #toggle {
+    background-color: white;
+
+    .toggle-inner {
+      background-color: #1a202c;
+    }
+  }
+}
