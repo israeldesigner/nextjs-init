@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
+import AnchorLink from 'react-anchor-link-smooth-scroll';
+import Toggle from 'react-toggle';
+import "react-toggle/style.css" 
 
 
 const Acessibility: React.FunctionComponent = () =>{
@@ -12,10 +15,10 @@ const Acessibility: React.FunctionComponent = () =>{
         // If dark mode is enabled - adds classes to update dark-mode styling.
         // Else, removes and styling is as normal.
         if( darkMode === true ) {
-          body.classList.add('dark-mode')
+          body.classList.add('contrast')
           toggle.classList.add('toggle-active')
         } else {
-          body.classList.remove('dark-mode')
+          body.classList.remove('contrast')
           toggle.classList.remove('toggle-active')
         }
       }, [darkMode])
@@ -24,18 +27,28 @@ const Acessibility: React.FunctionComponent = () =>{
             <Container className='app-acessibilidade' fluid>
                 <Row className="align-items-center">
                     <Col className="app-acessibilidadeMenu d-flex align-items-center">
-                        <a className="scroll mr-1" href="#anchorCom" accessKey='1'> Conteúdo Central |</a>
-                        <a className="scroll mr-1" href="#contHeader" accessKey='2'> Menu |</a>
-                        <a className="scroll mr-1" href="#footer" accessKey='3'> Rodapé </a>
-                        
-                        <a 
+                        <AnchorLink href='#anchorCom' className='mr-1' accessKey='1'>Conteúdo Central |</AnchorLink>
+                        <AnchorLink href='#contHeader' className='mr-1' accessKey='2'>Menu |</AnchorLink>
+                        <AnchorLink href='#footer' className='mr-1' accessKey='3'>Rodapé</AnchorLink>
+                        <label className='mt-2 ml-3 mr-1'>
+                            <Toggle
+                                defaultChecked={darkMode}
+                                icons={{
+                                    checked: <i className="icon-heart icons text-white toggle-inner"></i>,
+                                    unchecked: '🔆',
+                                }}
+                                aria-label="modo contrast"
+                                onChange={() => darkMode === false ? setDarkMode(true) : setDarkMode(false)} 
+                        />
+                        </label>
+                        {/* <a 
                             href="#" 
                             id="toggle"
                             onClick={() => darkMode === false ? setDarkMode(true) : setDarkMode(false)} 
-                            className="colorContrast ml-2 mr-1 text-gray-700"
+                            className="ml-2 mr-1 text-gray-700"
                         >
                             <i className="icon-heart icons text-blue text-gray-700 toggle-inner"></i>
-                        </a>
+                        </a> */}
                         <a href="#" className="sizeMenos mr-1 text-gray-700">A-</a>
                         <a href="#" className="sizePadrao mr-1 text-gray-700">A</a>
                         <a href="#" className="sizeMais mr-1 text-gray-700">A+</a>

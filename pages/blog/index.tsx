@@ -2,7 +2,7 @@ import * as React from 'react';
 import type { GetStaticProps, NextPage } from 'next';
 import {useEffect, useState} from "react";
 import { ReactChild, ReactFragment, ReactPortal } from 'react';
-import { GetPilars } from '../../functions/getPilars';
+import { getPilars } from '../../functions/getPilars';
 import { PilarData } from '../../domain/pilar/pilar';
 import { Accordion } from 'react-bootstrap';
 
@@ -10,8 +10,6 @@ import { Accordion } from 'react-bootstrap';
 const API_URL_BLOG = 'https://blogidesign.herokuapp.com';
 const POSTS_APIS = `${API_URL_BLOG}/posts`;
 
-
-console.log(typeof(POSTS_APIS));
 
 type Post = {
     title: string
@@ -33,8 +31,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
     const posts: Post[] = await res.json();
     const pilar: Pilar[] = await resPilar.json();
 
-    console.log(context);
-  
     return {
       props: {
         posts,
@@ -71,7 +67,7 @@ const Blog: React.FunctionComponent= ({posts, pilar}) =>  {
     return (
         <>    
         <ul>
-            {advice.map((e,i) => (
+            {/* {advice.map((e,i) => (
                 <>            
                 <Accordion className="steps">
                     <Accordion.Item eventKey={e.id} className='step position-relative'>
@@ -87,7 +83,7 @@ const Blog: React.FunctionComponent= ({posts, pilar}) =>  {
                     </Accordion.Item>
                 </Accordion>
                 </>
-            ))}
+            ))} */}
         </ul>
         <hr />
         <ul>
