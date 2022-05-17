@@ -1,16 +1,34 @@
-import { Col, Container, Row } from 'react-bootstrap'
-import classes from './Footer.module.scss'
+import { Col, Container, Row } from 'react-bootstrap';
+import Image from 'next/image';
+import classes from './Footer.module.scss';
+import LogoWifor from '../../public/img/logo-wifor.png';
+import LogoPmf from '../../public/img/logoPref.png';
+import LogoAcesso from '../../public/img/logo-esic.png';
+import AnchorLink from 'react-anchor-link-smooth-scroll';
 
 
 const Footer:React.FunctionComponent = (props) =>{
     return(
-        <footer id="footer" className="s-footer">
-            <Container>
-                <Row>
-                    <Col>
-                        <div className="col-lg-3 col-md-12 s-footer__blockLogo">
-                            <a href="#">
-                                <img src="img/logo-wifor.png" alt="logo juventude digital" className="text-center mb-2 logoWiFor" width="165" />
+        <>
+            <AnchorLink href='#acessibility' className="btnTop txt-white btn">
+                <i className="icon-arrow-up-circle icons text-white mr-1"></i>
+                <span className='text-white'> 
+                    Voltar Ao topo
+                </span>
+            </AnchorLink>       
+            <footer id="footer" className="s-footer">
+                <Container>
+                    <Row>
+                        <Col className='s-footer__blockLogo' md={{ span: 3, order: 'first' }} sm={{ span: 12,  order: 'last' }} xs={{order: 'last'}}>
+                            <a href="#" >
+                                <Image 
+                                    src={LogoWifor}  
+                                    alt="Logo da Prefeitura Wi For"  
+                                    id="logoPrefBranca" 
+                                    className=""
+                                    width={165}
+                                    height={89}
+                                />
                             </a>
 
                             <div className="footer-social d-flex  mb-3 mt-3">
@@ -24,45 +42,57 @@ const Footer:React.FunctionComponent = (props) =>{
                                     <i className="fa fa-youtube   icon-circle bg-youtube text-white" aria-hidden="true"></i>
                                 </a>
                             </div>
-                        </div>
-                    </Col>
-                </Row>
-            </Container>
-            <div className="container">
-                <div className="row">
-                    <div className="col-lg-5 col-md-12">
-                        <div>
-                            <a href="#">
-                                <img src="img/logo-citinovaBlack.png" alt="logo citinova" className="text-center mb-1 mt-1" width="200" />
+                        </Col>
+                        <Col className='' md={{ span: 6 }} sm={{ span: 12 }}>                    
+                            <div>
+                                <a href="#">
+                                    <img src="img/logo-citinovaBlack.png" alt="logo citinova" className="text-center mb-1 mt-1" width="200" />
+                                </a>
+                            </div>
+                            <address className="text-black">
+
+                                <b className="font-weight-bold">Fundação de Ciência,
+                                    Tecnologia e Inovação de Fortaleza – Citinova</b>
+                                <br />
+                                Rua dos Tremembés, 02 - Praia de Iracema, Fortaleza - CE
+                                <br />
+                                CEP: 60060-520<br />
+                            </address>
+                        </Col>
+                        <Col className='' md={{ span: 3, order: 'last' }} sm={{ span: 12,  order: 'first' }} xs={{order: 'first'}}>                    
+                            <Image 
+                                src={LogoPmf}  
+                                alt="Logo prefeitura de Fortaleza"  
+                                className=""
+                                width={250}
+                                height={75}
+                                priority={true}
+                            />
+                            <br />
+                            <br />
+                            <a target="_blank" data-toggle="tooltip" className="mt-3"
+                            href="https://acessoainformacao.fortaleza.ce.gov.br/sistema/site/index.html?ReturnUrl=%2fsistema%2f" rel="noreferrer">
+                            <Image 
+                                src={LogoAcesso}  
+                                alt="Logo acesso Esic"  
+                                className=""
+                                priority={true}
+                            />
                             </a>
+                        </Col>
+                    </Row>
+                </Container>
+                <div className="container">
+                    <div className="row">
+                        <div className="col-lg-4 col-md-12 d-block">
                         </div>
-                        <address className="text-black">
+                        <div className="col-sm-12 d-flex align-items-center justify-content-center">
 
-                            <b className="font-weight-bold">Fundação de Ciência,
-                                Tecnologia e Inovação de Fortaleza – Citinova</b>
-                            <br />
-                            Rua dos Tremembés, 02 - Praia de Iracema, Fortaleza - CE
-                            <br />
-                            CEP: 60060-520<br />
-                        </address>
-                    </div>
-                    <div className="col-lg-4 col-md-12 d-block">
-                        <a href="https://www.fortaleza.ce.gov.br/" target="_blank" rel="noreferrer">
-                            <img src="img/logoPref.png" className="mt-3 logoBranca" alt="Logo Prefeitura de Fortaleza" />
-                        </a>
-                        <br />
-                        <br />
-                        <a target="_blank" data-toggle="tooltip" className="mt-3"
-                         href="https://acessoainformacao.fortaleza.ce.gov.br/sistema/site/index.html?ReturnUrl=%2fsistema%2f" rel="noreferrer">
-                            <img src="https://dados.fortaleza.ce.gov.br/base/assets/images/ainformacao.png" alt="icone acesso informação" width="35" />
-                        </a>
-                    </div>
-                    <div className="col-sm-12 d-flex align-items-center justify-content-center">
-
+                        </div>
                     </div>
                 </div>
-            </div>
-        </footer>
+            </footer>
+        </>
     )
 }
 

@@ -27,10 +27,10 @@ const Banner: React.FunctionComponent = (props) =>{
                         quality={90}
                         alt="banner 2 completo"
                     />                  
-                    <Carousel.Caption>
+                    {/* <Carousel.Caption>
                     <h3>Second slide label</h3>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    </Carousel.Caption>
+                    </Carousel.Caption> */}
                 </Carousel.Item>
             </Carousel>
         </section>

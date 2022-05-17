@@ -22,7 +22,7 @@ import Accordion from 'react-bootstrap/Accordion';
 // }
 
 
-const MobileHolder: React.FunctionComponent = ({pilars}) => {
+const MobileHolder: React.FunctionComponent = () => {
     const [advice, setAdvice] = useState([]);
     useEffect(() => {
         let locationTotal = location.href;
@@ -43,7 +43,7 @@ const MobileHolder: React.FunctionComponent = ({pilars}) => {
         };
         fetchData();
     
-    },[advice])
+    },[])
     return (
         <>        
             {advice.map((e) => (

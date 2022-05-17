@@ -12,8 +12,8 @@ const Contato: React.FunctionComponent = () =>{
                         </h2>
                     </Col>
                 </Row>
-                <Row>
-                    <Col>                    
+                <Row className="">
+                    <Col lg={{ span: 6, offset: 3 }} md={{ span: 12, offset: 0 }}>                    
                         <Form>
                             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                                 <Form.Label>Nome</Form.Label>
@@ -21,7 +21,7 @@ const Contato: React.FunctionComponent = () =>{
                             </Form.Group>
                             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                                 <Form.Label>Email</Form.Label>
-                                <Form.Control type="email" placeholder="seuemail@example.com" />
+                                <Form.Control type="email" placeholder="seuemail@examplo.com" />
                             </Form.Group>
                             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                                 <Form.Label>Assunto</Form.Label>
@@ -29,7 +29,7 @@ const Contato: React.FunctionComponent = () =>{
                             </Form.Group>
                             <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                                 <Form.Label>Mensagem</Form.Label>
-                                <Form.Control as="textarea" rows={3} />
+                                <Form.Control as="textarea" rows={4} />
                             </Form.Group>
                             <Button variant='success'> Enviar </Button>
                         </Form>

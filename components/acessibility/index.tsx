@@ -6,11 +6,12 @@ import "react-toggle/style.css"
 
 
 const Acessibility: React.FunctionComponent = () =>{
+    const PIXELS_IN_POINT = 1.333;
     const [ darkMode, setDarkMode ] = useState(false);
-    
+    // const [ increaseFont, setIncreaseFont ] = useState(16);
     useEffect(() => {
-        const body = document.body
-        const toggle:any = document.querySelector('.toggle-inner')
+        const body = document.body;
+        const toggle:any = document.querySelector('.toggle-inner');
         
         // If dark mode is enabled - adds classes to update dark-mode styling.
         // Else, removes and styling is as normal.
@@ -23,7 +24,7 @@ const Acessibility: React.FunctionComponent = () =>{
         }
       }, [darkMode])
     return(
-        <section className="s-acessibility d-none d-lg-block bg-light">
+        <section id="acessibility" className="s-acessibility d-none d-lg-block bg-light">
             <Container className='app-acessibilidade' fluid>
                 <Row className="align-items-center">
                     <Col className="app-acessibilidadeMenu d-flex align-items-center">
