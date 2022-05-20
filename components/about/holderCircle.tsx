@@ -1,4 +1,4 @@
-import React, { useState, useRef, useLayoutEffect } from 'react';
+import React, { useState, useRef, useLayoutEffect, useCallback } from 'react';
 import {useEffect} from "react";
 
 const HolderCircle: React.FunctionComponent = () =>{
@@ -11,26 +11,43 @@ const HolderCircle: React.FunctionComponent = () =>{
     }
 
     const elementRef = useRef(null);
+    const intervalRef = useRef();
+    const circleContainer = useRef();
+    const [ pilar, setPilar ] = useState([]);
+    const [ value, setValue ] = useState(0);
+    const fetchPilar = useCallback( async () =>{
+        const response = await fetch('http://localhost:3000//api/pilar');
+        const json   = await response.json() 
+        setPilar(json)
+    },[])
 
-    const _title: string[] = ['Expansão da rede', 'Disponibilidade', 'Inclusão Digital', 'Conectividade', 'Cidadania Digital', 'Segurança'];
-    const _circDescription: string[] = [
-        "Wi-Fi mais perto de você",
-        "Internet 24 horas por dia 7 dias por semana",
-        "Democratização do acesso",
-        "Internet para quem mais precisa",
-        "Direitos e deveres da cultura de acesso à internet.",
-        "Wi-For, Respeita a privacidade dos seus dados e obdece no que diz respeito a LGPD"
-    ];
-    const _iconsCircle: string[] = ["icon-feed", "icon-location-pin", "icon-people", "icon-globe", "icon-organization", "icon-shield"];
-    const [value, setValue] = useState(() => () => console.log("default ooops"));
-
+    
     useEffect(() => {
 
-        const divElement = elementRef.current;
+
+        fetchPilar();
+        // let base_url = window.location.origin;
+        // const url = `${base_url}/api/pilar`;
+
+        // const fetchData = async () => {
+        //     try {
+        //         const response = await fetch(url);
+        //         const json = await response.json();
+        //         setAdvice(json);
+        //     } catch (error) {
+        //         console.log("error", error);
+        //     }
+        // };
 
         //variaveis dos seletores
-        let fields = document.querySelectorAll('.itemDot');
-        let container = document.querySelectorAll('.dotCircle');
+        return () => {}
+
+    }, [fetchPilar]);
+
+    useEffect(() => {    
+
+        let fields:any = document.querySelectorAll('.itemDot');
+        let container:any = document.querySelectorAll('.dotCircle');
         let itemDot:any = document.querySelectorAll('.itemDot');  
         let cirItem: any = document.querySelectorAll('.CirItem');
         let dotCircle:any = document.querySelector(".dotCircle");
@@ -46,7 +63,7 @@ const HolderCircle: React.FunctionComponent = () =>{
         radius = width / 2.5;
 
         //angulos dos campos
-        fields.forEach((e:any,i)=>{
+        fields.forEach((e:any)=>{
             let x:number = Math.round(width / 2 + radius * Math.cos(angle) - e.clientWidth / 2);
             let y:number = Math.round(height / 2 + radius * Math.sin(angle) - e.clientHeight / 2);
 
@@ -56,35 +73,10 @@ const HolderCircle: React.FunctionComponent = () =>{
         });
 
 
-        
-        const valeTestando = () => {
-            let fields = document.querySelectorAll('.itemDot');
-            setValue(value);
-        }
-        //   $(".itemDot").click(function () {
-        //     var dataTab = $(this).data("tab");
-        //     $(".itemDot").removeClass("active");
-        //     $(this).addClass("active");
-        //     $(".CirItem").removeClass("active");
-        //     $(".CirItem" + dataTab).addClass("active");
-        //     i = dataTab;
-
-        //     $(".dotCircle").css({
-        //         transform: "rotate(" + (360 - (i - 1) * 36) + "deg)",
-        //         transition: "2s",
-        //     });
-        //     $(".itemDot").css({
-        //         transform: "rotate(" + (i - 1) * 36 + "deg)",
-        //         transition: "1s",
-        //     });
-        // });
-        setValue(valeTestando);
-
-
-
         setInterval(function () {
 
             let dataTab: any = document.querySelectorAll('.itemDot.active')[0].getAttribute('data-tab');
+            console.log(dataTab);
             if (dataTab > 6 || i > 6) {
                 dataTab = 1;
                 i = 1;
@@ -121,49 +113,51 @@ const HolderCircle: React.FunctionComponent = () =>{
 
         }, 5000);
 
-    }, [value]);
-    
-    const [count, setCount] = useState(0);
-    const [name, setName] = useState('teste');
+        // console.log(circleContainer);
 
+        return () => {}
+    }, [pilar]);
+
+    const onButtonClick = () => {
+        // `current` aponta para o evento de `focus` gerado pelo campo de texto
+        console.log("testando");
+        console.log(circleContainer.current);
+        // circleContainer.current.focus();
+    };
+    
 
     return(
         <>
-            <div className="holderCircle p-4 d-none d-md-block">
-                <div className="round"></div>
-                <div className="dotCircle">
-                    {
-                        _iconsCircle.map((icon,i) => (
-                            <>                            
-                            <span className={`itemDot active itemDot${i + 1}`}   onClick={() => setValue(() => value)}  ref={elementRef} data-tab={i +1}>
-                                <i className={icon} key={i}></i>
+          
+                <div className="holderCircle p-4 d-none d-md-block">
+                    <div className="round"></div>
+                        <div className="dotCircle" ref={circleContainer}>
+                        {pilar.map((e,i) => (
+                            <>  
+                            <span className={`itemDot itemDot${i + 1} ${(i === 0 ? 'active' : '')}`} ref={circleContainer} onClick={onButtonClick} data-tab={i +1}>
+                                <i className={e.icon} key={i}></i>
                                 <span className="forActive"></span>
                             </span>
                             </>
-                        ))
-                    }
-                </div>
+                        ))}                                
+                        </div>
 
-                <div className="contentCircle">
-
-                    {
-                        _title.map((title,i) => (
-                            <>                            
-                                <div className={`CirItem title-box active CirItem${i + 1}`}>
-                                    <h2 className="title">
-                                        <span key={i}>{title}</span>
-                                    </h2>
-                                    <p>
-                                        Wi-Fi mais perto de você
-                                    </p>
-                                    <i className="icon-feed icons"></i>
-                                </div>
+                        <div className="contentCircle">
+                        {pilar.map((e,i) => (
+                            <>                              
+                            <div className={`CirItem title-box CirItem${i + 1} ${(i === 0 ? 'active' : '')}`}>
+                                <h2 className="title">
+                                    <span key={i}>{e.title}</span>
+                                </h2>
+                                <p>
+                                    {e.description}
+                                </p>
+                                <i className="icon-feed icons"></i>
+                            </div>
                             </>
-                        ))
-                    }
-                </div> 
-
-            </div>
+                        ))}                                  
+                        </div>                 
+                </div>
         </>
     )
 }
