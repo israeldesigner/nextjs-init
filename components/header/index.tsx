@@ -33,17 +33,22 @@ const Header: React.FunctionComponent = (props) => {
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav" className="h-nav justify-content-end">
                         <Nav className="h-nav__menu--list navbar-nav">
-                            <Nav.Link href="#home" className="nav-link">Início</Nav.Link>
-                            <Nav.Link href="#link" className="nav-link">Sobre</Nav.Link>
-                            <Nav.Link href="#home" className="nav-link">Como se conectar</Nav.Link>
-                            <Nav.Link href="#link" className="nav-link">Pontos de Wi-Fi</Nav.Link>
-                            <Nav.Link href="#anchorFaq'" className="nav-link">Parceiros</Nav.Link>
-                            
-                            <Nav.Link href="#" className="nav-link">
-                                {/* <AnchorLink href='#anchorFaq' className='text-white'>Dúvidas</AnchorLink> */}
-                                Dúvidas
+                            <Nav.Link href="/" className="nav-link">Início</Nav.Link>
+                            <Nav.Link href="" className="nav-link">
+                                <AnchorLink href='#anchorCom' className='text-white'>Sobre</AnchorLink>
                             </Nav.Link>
-                            <Nav.Link href="#link" className="nav-link">Fale conosco</Nav.Link>
+                            <Nav.Link href="" className="nav-link">
+                                <AnchorLink href='#anchorRen' className='text-white'>Como se conectar</AnchorLink>
+                            </Nav.Link>
+                            <Nav.Link href="" className="nav-link">
+                                <AnchorLink href='#anchorCom' className='text-white'>Pontos de Wi-Fi</AnchorLink>
+                            </Nav.Link>
+                            <Nav.Link href="" className="nav-link">
+                                <AnchorLink href='#anchorFaq' className='text-white'>Dúvidas</AnchorLink>
+                            </Nav.Link>
+                            <Nav.Link href="" className="nav-link">
+                                <AnchorLink href='#anchorCon' className='text-white'>Fale conosco</AnchorLink>
+                            </Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>

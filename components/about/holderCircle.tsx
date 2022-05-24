@@ -15,31 +15,37 @@ const HolderCircle: React.FunctionComponent = () =>{
     const circleContainer = useRef();
     const [ pilar, setPilar ] = useState([]);
     const [ value, setValue ] = useState(0);
+
     const fetchPilar = useCallback( async () =>{
         const response = await fetch('http://localhost:3000//api/pilar');
         const json   = await response.json() 
         setPilar(json)
     },[])
 
+
+    const onButtonClick = useCallback( async (e) =>{
+        console.log(e);
+        console.log(circleContainer.current);
+    },[])
+
+    // const onButtonClick = () => {
+    //     // `current` aponta para o evento de `focus` gerado pelo campo de texto
+    //     console.log("testando");
+    //     console.log(circleContainer.current);
+    //     // circleContainer.current.focus();
+    // };
+
     
     useEffect(() => {
+        
+        onButtonClick(this);
+        return () => {}
 
+    }, [onButtonClick]);
 
+    useEffect(() => {
+        
         fetchPilar();
-        // let base_url = window.location.origin;
-        // const url = `${base_url}/api/pilar`;
-
-        // const fetchData = async () => {
-        //     try {
-        //         const response = await fetch(url);
-        //         const json = await response.json();
-        //         setAdvice(json);
-        //     } catch (error) {
-        //         console.log("error", error);
-        //     }
-        // };
-
-        //variaveis dos seletores
         return () => {}
 
     }, [fetchPilar]);
@@ -76,7 +82,6 @@ const HolderCircle: React.FunctionComponent = () =>{
         setInterval(function () {
 
             let dataTab: any = document.querySelectorAll('.itemDot.active')[0].getAttribute('data-tab');
-            console.log(dataTab);
             if (dataTab > 6 || i > 6) {
                 dataTab = 1;
                 i = 1;
@@ -118,12 +123,7 @@ const HolderCircle: React.FunctionComponent = () =>{
         return () => {}
     }, [pilar]);
 
-    const onButtonClick = () => {
-        // `current` aponta para o evento de `focus` gerado pelo campo de texto
-        console.log("testando");
-        console.log(circleContainer.current);
-        // circleContainer.current.focus();
-    };
+
     
 
     return(
@@ -131,7 +131,7 @@ const HolderCircle: React.FunctionComponent = () =>{
           
                 <div className="holderCircle p-4 d-none d-md-block">
                     <div className="round"></div>
-                        <div className="dotCircle" ref={circleContainer}>
+                        <div className="dotCircle">
                         {pilar.map((e,i) => (
                             <>  
                             <span className={`itemDot itemDot${i + 1} ${(i === 0 ? 'active' : '')}`} ref={circleContainer} onClick={onButtonClick} data-tab={i +1}>
