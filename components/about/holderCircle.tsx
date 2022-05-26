@@ -14,7 +14,7 @@ const HolderCircle: React.FunctionComponent = () =>{
     const intervalRef = useRef();
     const circleContainer = useRef();
     const [ pilar, setPilar ] = useState([]);
-    const [ value, setValue ] = useState(0);
+    const [key, setKey] = useState('');
 
     const fetchPilar = useCallback( async () =>{
         const response = await fetch('http://localhost:3000//api/pilar');
@@ -23,25 +23,11 @@ const HolderCircle: React.FunctionComponent = () =>{
     },[])
 
 
-    const onButtonClick = useCallback( async (e) =>{
+    const onButtonClick = useCallback( async (e: MouseEvent) =>{
         console.log(e);
-        console.log(circleContainer.current);
+        console.log(e.currentTarget);
     },[])
 
-    // const onButtonClick = () => {
-    //     // `current` aponta para o evento de `focus` gerado pelo campo de texto
-    //     console.log("testando");
-    //     console.log(circleContainer.current);
-    //     // circleContainer.current.focus();
-    // };
-
-    
-    useEffect(() => {
-        
-        onButtonClick(this);
-        return () => {}
-
-    }, [onButtonClick]);
 
     useEffect(() => {
         
@@ -89,6 +75,7 @@ const HolderCircle: React.FunctionComponent = () =>{
 
             for (let i = 0; i < itemDot.length; i++) {
                 const element = itemDot[i];
+                console.log(element);
                 element.classList.remove('active');
             }
 
@@ -118,23 +105,32 @@ const HolderCircle: React.FunctionComponent = () =>{
 
         }, 5000);
 
-        // console.log(circleContainer);
+        const ontesteClick = (e:MouseEvent) => {
+            console.log(e.currentTarget);
+            setKey(e.key);
+            console.log("testando");
+        };
 
-        return () => {}
-    }, [pilar]);
+        document.addEventListener('click', ontesteClick);
+
+        onButtonClick();
+
+        return () => {
+            document.addEventListener('click', ontesteClick);
+        }
+    }, [pilar, onButtonClick]);
 
 
     
 
     return(
         <>
-          
                 <div className="holderCircle p-4 d-none d-md-block">
                     <div className="round"></div>
                         <div className="dotCircle">
                         {pilar.map((e,i) => (
                             <>  
-                            <span className={`itemDot itemDot${i + 1} ${(i === 0 ? 'active' : '')}`} ref={circleContainer} onClick={onButtonClick} data-tab={i +1}>
+                            <span className={`itemDot itemDot${i + 1} ${(i === 0 ? 'active' : '')}`} onClick={onButtonClick} data-tab={i +1}>
                                 <i className={e.icon} key={i}></i>
                                 <span className="forActive"></span>
                             </span>
@@ -147,12 +143,12 @@ const HolderCircle: React.FunctionComponent = () =>{
                             <>                              
                             <div className={`CirItem title-box CirItem${i + 1} ${(i === 0 ? 'active' : '')}`}>
                                 <h2 className="title">
-                                    <span key={i}>{e.title}</span>
+                                    <span key={e.title}>{e.title}</span>
                                 </h2>
                                 <p>
                                     {e.description}
                                 </p>
-                                <i className="icon-feed icons"></i>
+                                <i className={e.icon}></i>
                             </div>
                             </>
                         ))}                                  

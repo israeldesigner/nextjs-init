@@ -34,21 +34,11 @@ const Header: React.FunctionComponent = (props) => {
                     <Navbar.Collapse id="basic-navbar-nav" className="h-nav justify-content-end">
                         <Nav className="h-nav__menu--list navbar-nav">
                             <Nav.Link href="/" className="nav-link">Início</Nav.Link>
-                            <Nav.Link href="" className="nav-link">
-                                <AnchorLink href='#anchorCom' className='text-white'>Sobre</AnchorLink>
-                            </Nav.Link>
-                            <Nav.Link href="" className="nav-link">
-                                <AnchorLink href='#anchorRen' className='text-white'>Como se conectar</AnchorLink>
-                            </Nav.Link>
-                            <Nav.Link href="" className="nav-link">
-                                <AnchorLink href='#anchorCom' className='text-white'>Pontos de Wi-Fi</AnchorLink>
-                            </Nav.Link>
-                            <Nav.Link href="" className="nav-link">
-                                <AnchorLink href='#anchorFaq' className='text-white'>Dúvidas</AnchorLink>
-                            </Nav.Link>
-                            <Nav.Link href="" className="nav-link">
-                                <AnchorLink href='#anchorCon' className='text-white'>Fale conosco</AnchorLink>
-                            </Nav.Link>
+                            <AnchorLink href='#anchorCom' className='nav-link'>Sobre</AnchorLink>
+                            <AnchorLink href='#anchorRen' className='nav-link'>Como se conectar</AnchorLink>
+                            <AnchorLink href='#anchorCom' className='nav-link'>Pontos de Wi-Fi</AnchorLink>
+                            <AnchorLink href='#anchorFaq' className='nav-link'>Dúvidas</AnchorLink>
+                            <AnchorLink href='#anchorCon' className='nav-link'>Fale conosco</AnchorLink>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
