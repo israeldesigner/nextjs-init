@@ -23,9 +23,21 @@ const HolderCircle: React.FunctionComponent = () =>{
     },[])
 
 
-    const onButtonClick = useCallback( async (e: MouseEvent) =>{
-        console.log(e);
+    const onButtonClick = useCallback( async (e: any) =>{
         console.log(e.currentTarget);
+        let itemDot:any = document.querySelectorAll('.itemDot');
+        let cirItem: any = document.querySelectorAll('.CirItem'); 
+        for (let i = 0; i < itemDot.length; i++) {
+            const element = itemDot[i];
+            element.classList.remove('active');
+        }
+        for (let i = 0; i < cirItem.length; i++) {
+            const element = cirItem[i];
+            element.classList.remove('active');
+        }
+        
+        let i = 2;
+        e.currentTarget.classList.add('active');
     },[])
 
 
@@ -40,7 +52,7 @@ const HolderCircle: React.FunctionComponent = () =>{
 
         let fields:any = document.querySelectorAll('.itemDot');
         let container:any = document.querySelectorAll('.dotCircle');
-        let itemDot:any = document.querySelectorAll('.itemDot');  
+        let itemDot:any = document.querySelectorAll('.itemDot'); 
         let cirItem: any = document.querySelectorAll('.CirItem');
         let dotCircle:any = document.querySelector(".dotCircle");
 
@@ -75,14 +87,15 @@ const HolderCircle: React.FunctionComponent = () =>{
 
             for (let i = 0; i < itemDot.length; i++) {
                 const element = itemDot[i];
-                console.log(element);
                 element.classList.remove('active');
             }
 
             let usingDt: any = document.querySelector('[data-tab="' + i + '"]');
             usingDt.classList.add("active");
 
+            console.log(i);
             let cirItemNum: any = document.querySelectorAll(`.CirItem${i}`);
+            console.log(cirItemNum);
 
             for (let i = 0; i < cirItem.length; i++) {
                 const element = cirItem[i];
@@ -105,18 +118,7 @@ const HolderCircle: React.FunctionComponent = () =>{
 
         }, 5000);
 
-        const ontesteClick = (e:MouseEvent) => {
-            console.log(e.currentTarget);
-            setKey(e.key);
-            console.log("testando");
-        };
-
-        document.addEventListener('click', ontesteClick);
-
-        onButtonClick();
-
         return () => {
-            document.addEventListener('click', ontesteClick);
         }
     }, [pilar, onButtonClick]);
 
