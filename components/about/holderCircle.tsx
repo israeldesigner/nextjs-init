@@ -3,62 +3,30 @@ import {useEffect} from "react";
 
 const HolderCircle: React.FunctionComponent = () =>{
 
-    if (typeof(window) === 'object') {
-        // Check if document is finally loaded
-        document.addEventListener("DOMContentLoaded", function () {
-            alert('Finished loading document');
-        });
-    }
-
-    const elementRef = useRef(null);
-    const intervalRef = useRef();
     const circleContainer = useRef();
     const [ pilar, setPilar ] = useState([]);
-    const [key, setKey] = useState('');
+
+    type Pilar = {
+
+        id: string,
+        title: string,
+        description: string,
+        icon: string
+    
+    }
 
     const fetchPilar = useCallback( async () =>{
-        const response = await fetch('http://localhost:3000//api/pilar');
+        let base_url: string = window.location.origin;
+        const response = await fetch(`${base_url}/api/pilar`);
         const json   = await response.json() 
         setPilar(json)
-    },[])
+    },[]);
 
-
-    const onButtonClick = useCallback( async (e: any) =>{
-        console.log(e.currentTarget);
-        let itemDot:any = document.querySelectorAll('.itemDot');
-        let cirItem: any = document.querySelectorAll('.CirItem'); 
-        for (let i = 0; i < itemDot.length; i++) {
-            const element = itemDot[i];
-            element.classList.remove('active');
-        }
-        for (let i = 0; i < cirItem.length; i++) {
-            const element = cirItem[i];
-            element.classList.remove('active');
-        }
-        
-        let i = 2;
-        e.currentTarget.classList.add('active');
-    },[])
-
-
-    useEffect(() => {
-        
-        fetchPilar();
-        return () => {}
-
-    }, [fetchPilar]);
-
-    useEffect(() => {    
+    const mathCircle = useCallback( async () => {
 
         let fields:any = document.querySelectorAll('.itemDot');
         let container:any = document.querySelectorAll('.dotCircle');
-        let itemDot:any = document.querySelectorAll('.itemDot'); 
-        let cirItem: any = document.querySelectorAll('.CirItem');
-        let dotCircle:any = document.querySelector(".dotCircle");
 
-
-        //variavies para circulo
-        let i: number = 2;
         let radius: number = 200;
         let width: number = container[0].clientWidth;
         let height: number = container[0].clientHeight;
@@ -76,6 +44,62 @@ const HolderCircle: React.FunctionComponent = () =>{
             angle += step;
         });
 
+    },[]);
+
+    const holderStyle = useCallback( async (interator: number) =>{
+
+        let dotCircle:any = document.querySelector(".dotCircle");
+        let itemDot:any = document.querySelectorAll('.itemDot'); 
+
+        dotCircle.style.transform = "rotate(" + (360 - (interator - 2) * 36) + "deg)";
+        dotCircle.style.transition = "2s";
+
+        itemDot.forEach((element:any) => {
+            element.style.transform = "rotate(" + (interator - 2) * 36 + "deg)";
+            element.style.transition = "s";
+        });
+
+    },[])
+
+    const onButtonClick = useCallback( async (e: any) =>{
+
+        let dataTab: any = e.currentTarget.getAttribute('data-tab');
+        let itemDot:any = document.querySelectorAll('.itemDot');
+        let cirItem: any = document.querySelectorAll('.CirItem'); 
+        let circItemDataTab: any = document.querySelector(`.CirItem${dataTab}`);
+
+        for (let i = 0; i < itemDot.length; i++) {
+            const element = itemDot[i];
+            element.classList.remove('active');
+        }
+        for (let i = 0; i < cirItem.length; i++) {
+            const element = cirItem[i];
+            element.classList.remove('active');
+        }
+
+
+        e.currentTarget.classList.add('active');
+        circItemDataTab.classList.add('active');
+
+        holderStyle(dataTab);
+
+    },[holderStyle]);
+
+    useEffect(() => {
+        
+        fetchPilar();
+        return () => {}
+
+    }, [fetchPilar]);
+
+
+    useEffect(() => {    
+
+        let i: number = 2;
+        let itemDot:any = document.querySelectorAll('.itemDot'); 
+        let cirItem: any = document.querySelectorAll('.CirItem');
+
+        mathCircle();
 
         setInterval(function () {
 
@@ -93,9 +117,7 @@ const HolderCircle: React.FunctionComponent = () =>{
             let usingDt: any = document.querySelector('[data-tab="' + i + '"]');
             usingDt.classList.add("active");
 
-            console.log(i);
             let cirItemNum: any = document.querySelectorAll(`.CirItem${i}`);
-            console.log(cirItemNum);
 
             for (let i = 0; i < cirItem.length; i++) {
                 const element = cirItem[i];
@@ -106,56 +128,50 @@ const HolderCircle: React.FunctionComponent = () =>{
                 const element = cirItemNum[i];
                 element.classList.add('active');
             }
-            i++;
 
-            dotCircle.style.transform = "rotate(" + (360 - (i - 2) * 36) + "deg)";
-            dotCircle.style.transition = "2s";
+            const interatorNum = i++;
 
-            itemDot.forEach((element:any) => {
-                element.style.transform = "rotate(" + (i - 2) * 36 + "deg)";
-                element.style.transition = "1s";
-            });
+            holderStyle(interatorNum);
 
         }, 5000);
 
         return () => {
         }
-    }, [pilar, onButtonClick]);
-
-
+        
+    }, [pilar, mathCircle, holderStyle, onButtonClick]);
     
 
     return(
         <>
-                <div className="holderCircle p-4 d-none d-md-block">
-                    <div className="round"></div>
-                        <div className="dotCircle">
-                        {pilar.map((e,i) => (
-                            <>  
-                            <span className={`itemDot itemDot${i + 1} ${(i === 0 ? 'active' : '')}`} onClick={onButtonClick} data-tab={i +1}>
-                                <i className={e.icon} key={i}></i>
-                                <span className="forActive"></span>
-                            </span>
-                            </>
-                        ))}                                
-                        </div>
+            <div className="holderCircle p-4 d-none d-md-block">
+                <div className="round"></div>
+                    <div className="dotCircle">
+                    {pilar.map((e,i) => (
+                        <>  
+                        <span className={`itemDot itemDot${i + 1} ${(i === 0 ? 'active' : '')}`} onClick={onButtonClick} data-tab={i +1}>
+                            <i className={e.icon} key={i}></i>
+                            <span className="forActive"></span>
+                        </span>
+                        </>
+                    ))}                                
+                    </div>
 
-                        <div className="contentCircle">
-                        {pilar.map((e,i) => (
-                            <>                              
-                            <div className={`CirItem title-box CirItem${i + 1} ${(i === 0 ? 'active' : '')}`}>
-                                <h2 className="title">
-                                    <span key={e.title}>{e.title}</span>
-                                </h2>
-                                <p>
-                                    {e.description}
-                                </p>
-                                <i className={e.icon}></i>
-                            </div>
-                            </>
-                        ))}                                  
-                        </div>                 
-                </div>
+                    <div className="contentCircle">
+                    {pilar.map((e,i) => (
+                        <>                              
+                        <div className={`CirItem title-box CirItem${i + 1} ${(i === 0 ? 'active' : '')}`}>
+                            <h2 className="title">
+                                <span key={e.title}>{e.title}</span>
+                            </h2>
+                            <p>
+                                {e.description}
+                            </p>
+                            <i className={e.icon}></i>
+                        </div>
+                        </>
+                    ))}                                  
+                    </div>                 
+            </div>
         </>
     )
 }
